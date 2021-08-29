@@ -1,0 +1,26 @@
+
+<%if current_user%>
+    <h5 style="float:right">Hello <%=current_user.email%></h5>
+    <a href="<%=logout_path%>" class="btn btn-primary" style="float:left;margin:1%;">Logout</a>
+    <a href="/createPost" class="btn btn-primary" style="float:left; margin:1%;">Create/Edit Posts</a>
+    <% if @posts!=nil%>
+    <%@posts.each do |post|%>
+        <div style="display:inline-block;justify-content:space-around;margin-top:5%">
+        <div class="card" style="width: 18rem;margin:10%">
+        <div class="card-body">
+        <h5 class="card-title"> <%=post.title%></h5>
+        <p class="card-text"><%=post.description%></p>
+        </div>
+        </div>
+        </div>
+        <%end%>
+    <%end%>    
+<%else%>
+
+<div style="display:flex;justify-content:center;margin-top:15%">
+    <a href="<%=signup_path%>" class="btn btn-primary" style="margin:5%;min-width:200px">Signup</a>
+    <a href="<%=signin_path%>" class="btn btn-primary" style="margin:5%;min-width:200px">Login</a>
+</div> 
+
+
+<%end%>

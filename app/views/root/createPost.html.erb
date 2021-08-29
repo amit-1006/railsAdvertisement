@@ -1,0 +1,38 @@
+<%if session[:user_id]==nil%>
+  <h2 style="display:flex;justify-content:center;margin:10%">No such page exits!!</h2>
+<%else%>
+
+<h5 style="display:flex;justify-content:center;margin:2%">Create new Advertisement</h5>
+<a href="<%=logout_path%>" class="btn btn-primary" style="float:right;margin:2%;margin-top:-40px">Logout</a>
+<form method="POST" action="/add">
+<%=token_tag%>
+<div class="col-md-6" style="margin:0 auto;">
+<div class="mb-3">
+  <label for="title" class="form-label">Title</label>
+  <input type="text" class="form-control" id="title" name="title">
+</div>
+<div class="mb-3">
+  <label for="description" class="form-label">Description</label>
+  <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+</div>
+<input type="submit" class="btn btn-primary" value="Add Post">
+</div>
+</form>
+
+<% if @posts!=nil%>
+<%@posts.each do |post|%>
+    <%if(post.emailId==User.find(session[:user_id]).email)%>
+    <div style="display:inline-block;justify-content:space-around;margin-top:5%">
+    <div class="card" style="width: 18rem;margin:10%">
+    <div class="card-body">
+    <h5 class="card-title"> <%=post.title%></h5>
+    <p class="card-text"><%=post.description%></p>
+    <a href="/update/<%=post.id%>" class="btn btn-primary">Edit</a>
+    <a href="/delete/<%=post.id%>" data-method="delete" class="btn btn-danger">Delete</a>
+    </div>
+    </div>
+    </div>
+    <%end%>
+    <%end%>
+<%end%> 
+<%end%>

@@ -1,0 +1,28 @@
+<h1 style="display:flex;justify-content:center">Sign Up</h1>
+
+<%if @register%>
+  <h5>Account created successfully</h5>
+  <a href="<%=signin_path%>">Login</a>
+
+<%elsif @register!=nil%>
+  <h5>Email is already taken</h5>  
+<%end%>
+
+<h4><%=@message%></h4>
+
+<form method="POST" action="<%=register_path%>">
+<%=token_tag%>
+<div class="col-md-4" style="margin:auto">
+  <div class="mb-3">
+    <label for="username" class="form-label">Email</label>
+    <input type="email" class="form-control" id="username" name="username" aria-describedby="emailHelp" required>
+    <div id="emailHelp" class="form-text">We will never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="userpassword" class="form-label">Password</label>
+    <input type="password" class="form-control" id="userpassword" name="userpassword" required>
+  </div>
+  
+  <input type="submit" class="btn btn-primary" value="Register">
+  </div>
+</form>

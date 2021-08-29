@@ -1,0 +1,17 @@
+
+<a href="<%=logout_path%>" class="btn btn-primary" style="float:right;margin:1%;">Logout</a>
+<form method="POST" action="/updateform">
+<input type="hidden" value=<%=@id%> name="id">
+<%=token_tag%>
+<div class="col-md-6" style="margin:0 auto;">
+<div class="mb-3">
+  <label for="title" class="form-label">Title</label>
+  <input type="text" class="form-control" id="title" name="title" value=<%=@title%>>
+</div>
+<div class="mb-3">
+  <label for="description" class="form-label">Description</label>
+  <textarea class="form-control" id="description" name="description" rows="3"><%=@description%></textarea>
+</div>
+<input type="submit" class="btn btn-primary" value="Update Post">
+</div>
+</form>
